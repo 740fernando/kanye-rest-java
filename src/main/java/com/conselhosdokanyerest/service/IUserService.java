@@ -16,9 +16,9 @@ public interface IUserService {
 
 	User buscarPorId(Long id);
 
-	void inserir(User mestre);
+	void inserir(User user);
 
-	void atualizar(Long id, User mestre);
+	void atualizar(Long id, User user);
 
 	void deletar(Long id);
 
