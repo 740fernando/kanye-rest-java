@@ -1,4 +1,4 @@
-package com.mestrepokemon.model;
+package com.conselhosdokanyerest.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -6,18 +6,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-
 @Entity
-public class Mestre {
-	
+public class User {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	private String nome;
-	
+
 	@ManyToOne
-	private Pokemon pokemon;
+	private Conselho conselho;
 
 	public Long getId() {
 		return id;
@@ -35,11 +34,11 @@ public class Mestre {
 		this.nome = nome;
 	}
 
-	public Pokemon getPokemon() {
-		return pokemon;
+	public Conselho getConselho() {
+		return conselho;
 	}
 
-	public void setPokemon(Pokemon pokemon) {
-		this.pokemon = pokemon;
+	public void setConselho(Conselho conselho) {
+		this.conselho = conselho;
 	}
 }
