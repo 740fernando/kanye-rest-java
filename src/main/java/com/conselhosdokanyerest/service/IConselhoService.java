@@ -10,6 +10,6 @@ import com.conselhosdokanyerest.entities.Conselho;
 public interface IConselhoService {
 
 	@GetMapping("/{quote}/")
-	Conselho consultarPorId(@PathVariable("quote") String quote);
+	Conselho consultarPorQuote(@PathVariable("quote") String quote);
 
 }

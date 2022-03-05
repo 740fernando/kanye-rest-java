@@ -47,7 +47,7 @@ public class UserServiceImpl implements IUserService {
 	public void atualizar(Long id, User user) {
 		Optional<User> userBd = userRepository.findById(id);
 		if (userBd.isPresent()) {
-			salvarUser(user);
+			atualizarUser(user, userBd);
 		}
 	}
 
@@ -56,11 +56,20 @@ public class UserServiceImpl implements IUserService {
 		userRepository.deleteById(id);
 	}
 
+	private void atualizarUser(User user, Optional<User> userBd) {
+
+		Conselho quoteExistente = userBd.get().getConselho();
+		Long userIdExistente = userBd.get().getId();
+		user.setId(userIdExistente);
+		user.setConselho(quoteExistente);
+		userRepository.save(user);
+	}
+
 	private void salvarUser(User user) {
 
 		String quote = user.getConselho().getQuote();
 		Conselho conselho = conselhoRepository.findById(quote).orElseGet(() -> {
-			Conselho novoConselho = iconselhoService.consultarPorId(quote);
+			Conselho novoConselho = iconselhoService.consultarPorQuote(quote);
 			conselhoRepository.save(novoConselho);
 			return novoConselho;
 		});
